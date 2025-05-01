@@ -7,15 +7,17 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  name: Default
 
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '20.x'
+    versionSpec: '16.x'
+
   displayName: 'Install Node.js'
 
 - script: |
     npm install
-    npm run build
+    npx wdio .\wdio.conf.js
+    
   displayName: 'npm install and build'
